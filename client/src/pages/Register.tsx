@@ -1,7 +1,11 @@
 import AuthForm from "../components/AuthForm";
-
+import "../styles/Auth.css";
 function Register() {
-    return(<AuthForm formType="register"/>);
+    return(
+    <div className="auth-container">
+        <AuthForm formType="sign-up"/>
+    </div>
+    );
 }
 
 export default Register;

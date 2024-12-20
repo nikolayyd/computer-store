@@ -30,12 +30,18 @@
     transition: background-color 0.3s;
 }
 
-.navbar-link:hover {
-    background-color: #555;
+.navbar-link-right {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    justify-content: right;
 }
 
-.navbar-name {
-    display: inline;
+.navbar-link:hover {
+    background-color: #555;
 }
 
 @media (max-width: 768px) {
