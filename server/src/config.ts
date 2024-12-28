@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import convict from 'convict'
 
 export const config = convict({
@@ -24,15 +23,16 @@ export const config = convict({
     password: {
       doc: 'The postgresql password',
       env: 'DB_PASSWORD',
-      default: 'postgres'
+      default: 'Kayo250421'
     },
     name: {
       doc: 'The postgresql database name',
       env: 'DB_NAME',
       type: '*',
-      default: 'issuetracker'
+      default: 'computer-store'
     },
   },
 })
 
 config.validate()
+

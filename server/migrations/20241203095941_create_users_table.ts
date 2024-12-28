@@ -7,7 +7,6 @@ export async function up(knex: Knex) {
       t.string('password').notNullable(); 
       t.string('firstName').notNullable();
       t.string('lastName').notNullable(); 
-      t.boolean('is_admin').defaultTo(false); 
       t.timestamp('created_at').defaultTo(knex.fn.now()); 
     });
   }

@@ -1,5 +1,4 @@
 import { User } from "../models/User";
-
 interface UserRegistrationData {
     firstName: string;
     lastName: string;
@@ -8,7 +7,7 @@ interface UserRegistrationData {
 }
 
 class UserService {
-    async login(email: string, password: string): Promise<number> {      
+    async signIn(email: string, password: string): Promise<number> {      
         try {
             const user = await User.query().where('email', email).first();
             if (!user || password != user.password) {
@@ -24,7 +23,7 @@ class UserService {
         }
     }
 
-    async register(userData: UserRegistrationData): Promise<number> {
+    async signUp(userData: UserRegistrationData): Promise<number> {
         try {
             const newUser = await User.query().insert(userData);
             return newUser.id;
@@ -52,27 +51,6 @@ class UserService {
                 throw new Error('no-user');
             }
             throw new Error('Error while getting userInfo!');
-        }
-    }
-
-    async getUserStats(userId: number): Promise<UserStatsServiceModel> {
-        try {
-            const user = await User.query().findById(userId);
-            if (!user) {
-                throw ('no-user');
-            }
-
-            const userStats = {
-                projects: await user.$relatedQuery('projects').resultSize(),
-                issues: await user.$relatedQuery('issues').resultSize()
-            };
-            return userStats;
-        }
-        catch (err) {
-            if (err === 'no-user') {
-                throw new Error('no-user');
-            }
-            throw new Error('Error while getting userStats!');
         }
     }
 }

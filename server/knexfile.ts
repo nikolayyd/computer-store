@@ -1,17 +1,16 @@
-import { config as envConfig } from  './src/config'
-import { knexSnakeCaseMappers } from 'objection'
+import { knexSnakeCaseMappers } from 'objection';
+import { config as envConfig } from './src/config';
 
 export const config = {
   development: {
-    // debug: true,
     client: 'postgres',
     connection: {
       host: envConfig.get('database.host'),
       port: envConfig.get('database.port'),
       user: envConfig.get('database.username'),
       password: envConfig.get('database.password'),
-      database: envConfig.get('database.name')
+      database: envConfig.get('database.name'),
     },
-    ...knexSnakeCaseMappers()
-  }
-}
+    ...knexSnakeCaseMappers(),
+  },
+};

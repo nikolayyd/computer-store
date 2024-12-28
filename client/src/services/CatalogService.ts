@@ -12,7 +12,7 @@ class CatalogService {
         });
 
         if (!response.ok) {
-            throw new Error('Error fetching issues');
+            throw new Error('Error fetching catalogs');
         }
 
         return await response.json();

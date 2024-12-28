@@ -11,7 +11,7 @@ class ProductService {
         });
 
         if (!response.ok) {
-            throw new Error('Error fetching issues');
+            throw new Error('Error fetching products');
         }
         return await response.json();
     } 

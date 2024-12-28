@@ -19,7 +19,7 @@ class UserService {
         });
 
         if (!response.ok) {
-            throw new Error('Error fetching issues');
+            throw new Error('Error fetching users');
         }
 
         return await response.json();
