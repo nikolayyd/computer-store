@@ -3,14 +3,31 @@ import { Link } from "react-router-dom";
 import "../styles/NavBar.css";
 
 function NavBar() {
-    const [user, setUser] = useState<{ id: string; username: string } | null>(null);
+    const [user, setUser] = useState<{ id: string; email: string } | null>(null);
+
+    const updateUserFromLocalStorage = () => {
+        const storedUser = localStorage.getItem('userInfo');
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            setUser({
+                id: localStorage.getItem("Id") || '',
+                email: `${parsedUser.email}`,
+            });
+        } else {
+            setUser(null);
+        }
+    };
 
     useEffect(() => {
-      const storedUser = localStorage.getItem('user');
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
+        updateUserFromLocalStorage();
+
+        window.addEventListener('storage', updateUserFromLocalStorage);
+
+        return () => {
+            window.removeEventListener('storage', updateUserFromLocalStorage);
+        };
     }, []);
+    
     return (
         <div>
             <nav className="navbar">
@@ -19,8 +36,8 @@ function NavBar() {
                         <Link to="/" className="navbar-link">
                             <span className="navbar-name">Home</span>
                         </Link>
-                        <Link to="/catalog" className="navbar-link">
-                            <span className="navbar-name">Catalog</span>
+                        <Link to="/category" className="navbar-link">
+                            <span className="navbar-name">Category</span>
                         </Link>
                         <Link to="/about-us" className="navbar-link">
                             <span className="navbar-name">About us</span>
@@ -28,9 +45,14 @@ function NavBar() {
                     </li>
                 </ul>
                 {user ? (
-                    <Link to="/cart" className="navbar-link">
-                        <span className="navbar-name">Cart</span>
-                    </Link>
+                    <div className="navbar-links-right">
+                        <Link to="/sign-out" className="navbar-link">
+                            <span className="navbar-name">Sign Out</span>
+                        </Link>
+                        <Link to="/cart" className="navbar-link">
+                            <span className="navbar-name">Cart</span>
+                        </Link>
+                    </div>
                     ) : (
                     <Link to="/sign-in" className="navbar-link">
                         <span className="navbar-name">Sign In</span>

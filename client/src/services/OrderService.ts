@@ -1,4 +1,4 @@
-import { getTokenFromLocalStorage } from "../utils/LocalStorage";
+import localStorageWorker from "../utils/LocalStorageWorker";
 
 export interface Order {
 
@@ -10,7 +10,7 @@ class OrderService {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getTokenFromLocalStorage()}`     
+                'Authorization': `Bearer ${localStorageWorker.getToken()}`   
             }
         });
 

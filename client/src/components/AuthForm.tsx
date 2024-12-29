@@ -1,6 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import authService from "../services/AuthService";
 import "../styles/AuthForm.css";
-import {saveUserToLocalStorage, UserAPI} from "../utils/LocalStorage";
+import localStorageWorker, {UserAPI} from "../utils/LocalStorageWorker";
 
 interface AuthProps {
     formType: 'sign-in' | 'sign-up';
@@ -14,6 +15,7 @@ export interface UserData {
 }
 
 function AuthForm({formType} : AuthProps) {
+  const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -31,8 +33,8 @@ function AuthForm({formType} : AuthProps) {
               ? await authService.signUp(userData)
               : await authService.signIn(userData.email, userData.password);
 
-      saveUserToLocalStorage(userAPI, userData);
-      console.log('ssss');
+      localStorageWorker.saveUser(userAPI, userData);
+      navigate('/catalog');
     } catch (error) {
       console.error('Error during authentication:', error);
   }

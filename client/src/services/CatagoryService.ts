@@ -1,13 +1,13 @@
-export interface Catalog {
+import { ICategory } from "../pages/Category";
+import localStorageWorker from "../utils/LocalStorageWorker";
 
-}
-
-class CatalogService {
-    async getCatalogs() : Promise<Catalog[]> {
+class CategoryService {
+    async getCatalogs() : Promise<ICategory[]> {
         const response = await fetch(`http://0.0.0.0:3001/catalogs/get-catalogs}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorageWorker.getToken()}`
             }
         });
 
@@ -19,5 +19,5 @@ class CatalogService {
     } 
 }
 
-const catalogService = new CatalogService();
-export default catalogService;
+const categoryService = new CategoryService();
+export default categoryService;

@@ -1,4 +1,3 @@
-import { getTokenFromLocalStorage } from "../utils/LocalStorage";
 
 export interface User {
     id: number;
@@ -13,9 +12,7 @@ class UserService {
         const response = await fetch(`http://:3001/users/get-info}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getTokenFromLocalStorage()}`
-            }
+                'Content-Type': 'application/json',            }
         });
 
         if (!response.ok) {
