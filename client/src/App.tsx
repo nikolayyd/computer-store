@@ -7,6 +7,7 @@ import Category from './pages/Category';
 import NavBar from './components/NavBar';
 import SignOut from './components/SignOut';
 import './styles/App.css';
+import Products from './pages/Products';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/category" element={<Category/>}/>
+          <Route path="/catalogue" element={<Category/>}/>
+          <Route path="/catalogue/:id" element={<Products/>}/>
           <Route path="/sign-in" element={<Login/>}/>
           <Route path="/sign-up" element={<Register/>}/>
           <Route path="/sign-out" element={<SignOut/>}/>

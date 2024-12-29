@@ -34,7 +34,7 @@ function AuthForm({formType} : AuthProps) {
               : await authService.signIn(userData.email, userData.password);
 
       localStorageWorker.saveUser(userAPI, userData);
-      navigate('/catalog');
+      navigate('/catalogue');
     } catch (error) {
       console.error('Error during authentication:', error);
   }

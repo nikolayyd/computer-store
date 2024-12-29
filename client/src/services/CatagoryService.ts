@@ -2,8 +2,8 @@ import { ICategory } from "../pages/Category";
 import localStorageWorker from "../utils/LocalStorageWorker";
 
 class CategoryService {
-    async getCatalogs() : Promise<ICategory[]> {
-        const response = await fetch(`http://0.0.0.0:3001/catalogs/get-catalogs}`, {
+    async getCategories() : Promise<ICategory[]> {
+        const response = await fetch(`http://localhost:3001/categories/get-categories`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

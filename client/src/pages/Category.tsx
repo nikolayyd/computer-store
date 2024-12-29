@@ -1,34 +1,35 @@
 import { useEffect, useState } from 'react';
 import localStorageWorker from "../utils/LocalStorageWorker";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Category.css";
-
-export interface IProduct {
-    id: string;
-    name: string;
-    price: number;
-    description?: string; 
-}
+import categoryService from '../services/CatagoryService';
 
 export interface ICategory {
     id: string;
     name: string;
-    products: IProduct[];
+    description?: string;
 }
-
-const mockCategories: ICategory[] = [
-    { id: "1", name: "Electronics", products: [] },
-    { id: "2", name: "Books", products: [] },
-    { id: "3", name: "Clothing", products: [] },
-    { id: "4", name: "Home Appliances", products: [] },
-    { id: "5", name: "Toys", products: [] },
-];
 
 function Category() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [categories, setCategories] = useState<ICategory[]>([]);
+    const navigate = useNavigate();
+    const fetchCategories = async () => {
+        try {
+            const fetchedCategories = await categoryService.getCategories();
+            setCategories(fetchedCategories);
+        } catch (error) {
+            console.log("Error fetching categories");
+        }
+    };
+
+    const handleCategoryClick = (id: string) => {
+        navigate(`${id}`);
+    }
 
     useEffect(() => {
         const user = localStorageWorker.getUser();
+        fetchCategories();
         setIsLoggedIn(!!user);
     }, []);
 
@@ -36,9 +37,10 @@ function Category() {
         <div className="category-container">
             {isLoggedIn ? (
                 <div className="categories-grid">
-                    {mockCategories.map((category) => (
-                        <div key={category.id} className="category-card">
+                    {categories.map((category) => (
+                        <div onClick={() => handleCategoryClick(category.id)} key={category.id} className="category-card">
                             <h3>{category.name}</h3>
+                            <span>{category.description}</span>
                         </div>
                     ))}
                 </div>

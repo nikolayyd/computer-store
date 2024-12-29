@@ -1,22 +1,32 @@
 import { Request, Response } from 'express';
 import CategoryService from '../services/CategoryService';
-import { verifyToken } from '../utils/jwtUtils';
+
+export interface IProduct {
+    id: number;
+    name: string;
+    price: string;
+    description?: string; 
+}
+
+export interface ICategory {
+    id: number;
+    name: string;
+    description?: string;
+}
+
 
 class CategoryController {
-    async getCatalogues(req: Request, res: Response): Promise<void> {
+    async getCategories(req: Request, res: Response): Promise<void> {
         try {
-            // const userData = req.body;
-                // res.status(400).json({ error: 'invalid-data' });
-            
-            // const userId = await userService.signUp(userData);
-
-            // res.status(201).json({userId, token});
-        } catch(error: any) {
-            // if (error.message === 'Error while register!') {
-                // res.status(400).json({error: 'already-used-email' });
-            // } else {
-                // res.status(500).json({error: 'Server error!' });
-            // }
+            const categories = await CategoryService.getCategories();
+            const categoriesData: ICategory[] = categories.map(category => ({
+                id: category.id,
+                name: category.name,
+                description: category.description,
+            }));
+            res.status(200).json(categoriesData);
+        } catch(error) {
+            res.status(500).json({error: 'Server error!' });
         }
     }
 }

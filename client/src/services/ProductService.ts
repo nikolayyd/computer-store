@@ -1,11 +1,9 @@
+import { IProduct } from "../pages/Products";
 import localStorageWorker from "../utils/LocalStorageWorker";
 
-export interface Product {
-
-}
 class ProductService {
-    async getProducts(catalogId: number) : Promise<Product[]> {
-        const response = await fetch(`http://localhost:3001/catalogs/${catalogId}/get-products}`, {
+    async getProductsFromCategory(catalogId: string) : Promise<IProduct[]> {
+        const response = await fetch(`http://localhost:3001/products/get-by-category/${catalogId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

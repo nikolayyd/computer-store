@@ -3,7 +3,7 @@ import { config as envConfig } from './src/config';
 
 export const config = {
   development: {
-    client: 'postgres',
+    client: 'pg',
     connection: {
       host: envConfig.get('database.host'),
       port: envConfig.get('database.port'),
