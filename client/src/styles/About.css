@@ -1,4 +1,4 @@
-.category-container {
+.department-container {
     padding: 20px;
 }
 
@@ -25,14 +25,14 @@
     background-color: #0056b3;
 }
 
-.categories-grid {
+.departments-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     margin: 20px 0;
 }
 
-.category-card {
+.department-card {
     border: 1px solid #ddd;
     padding: 20px;
     border-radius: 10px;
@@ -42,21 +42,18 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.category-card:hover {
+.department-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
 }
 
-.category-card h3 {
+.department-card h3 {
     margin: 0;
     font-size: 1.2rem;
     color: #333;
 }
 
-
-/* @media (max-height: 450px) {
-    .not-logged-in {
-        margin-top: 3em;
-    }
-} */
+.department-card span {
+    font-size: 0.9rem;
+    color: #555;
+}

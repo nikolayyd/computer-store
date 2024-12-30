@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import productService from "../services/ProductService";
+import "../styles/Product.css";
 
 export interface IProduct {
     id: string;
@@ -25,21 +26,20 @@ function Products() {
         fetchProducts();
     }, []);
 
-    return(
-        <div>
+    return (
+        <div className="product-container">
             <div className="products-grid">
                 {products.map((product) => (
-                    // <div onClick={() => handleProductClick(product.id)} key={product.id} className="product-card">
                     <div key={product.id} className="product-card">
                         <h3>{product.name}</h3>
-                        <p>Price: ${product.price}</p>
-                        <p>{product.description}</p>
+                        <p className="price">Price: {product.price} лв.</p>
+                        <p className="description">{product.description}</p>
+                        <button className="add-to-cart-btn">Add to Cart</button>
                     </div>
                 ))}
             </div>
-            <span>It is product page!</span>
-        </div>)
-    ;
+        </div>
+    );    
 }
 
 export default Products;

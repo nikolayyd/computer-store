@@ -8,6 +8,7 @@ import { authMiddleware } from './middlewares/AuthMiddleware';
 
 import { config } from '../knexfile';
 import { productRouter } from './routers/ProductRouter';
+import { departmentRouter } from './routers/DepartmentRouter';
 
 const cors = require('cors');
 const knex = Knex(config.development);
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/auth',authRouter);
 app.use('/categories', authMiddleware, categoryRouter);
 app.use('/products', authMiddleware, productRouter);
+app.use('/departments', authMiddleware, departmentRouter);
 // app.use('/orders', authMiddleware, orderRouter);
 
 app.listen(port, () => {

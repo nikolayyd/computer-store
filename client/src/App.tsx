@@ -1,13 +1,13 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from './pages/Home';
-import Login from './pages/Login';
+import SignOut from './components/SignOut';
+import NavBar from './components/NavBar';
+import Products from './pages/Products';
 import Register from './pages/Register';
 import Category from './pages/Category';
-import NavBar from './components/NavBar';
-import SignOut from './components/SignOut';
+import About from './pages/About';
+import Login from './pages/Login';
+import Home from './pages/Home';
 import './styles/App.css';
-import Products from './pages/Products';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/about-us" element={<About/>}/>
           <Route path="/catalogue" element={<Category/>}/>
           <Route path="/catalogue/:id" element={<Products/>}/>
           <Route path="/sign-in" element={<Login/>}/>
