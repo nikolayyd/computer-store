@@ -35,7 +35,6 @@ class AuthController {
 
         try {
             const userId = await userService.signIn(email, hashedPassword);
-
             const token = createToken(userId);
             res.status(201).json({userId, token});
         } catch (error: any) {

@@ -16,6 +16,20 @@ class DepartmentService {
         }
 
         return await response.json();
+    }
+        async getDepartmentNameById(categoryId: number): Promise<string> {
+        const response = await fetch(`http://localhost:3001/departments/get-department-name/${categoryId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorageWorker.getToken()}`
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error fetching department name by category id');
+        }
+        return await response.json();
     } 
 }
 

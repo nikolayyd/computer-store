@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Category from './pages/Category';
 import About from './pages/About';
 import Login from './pages/Login';
+import Cart from "./pages/Cart";
 import Home from './pages/Home';
 import './styles/App.css';
 
@@ -16,6 +17,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/cart" element={<Cart/>}/>
           <Route path="/about-us" element={<About/>}/>
           <Route path="/catalogue" element={<Category/>}/>
           <Route path="/catalogue/:id" element={<Products/>}/>

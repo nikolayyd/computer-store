@@ -16,7 +16,7 @@ class CategoryService {
         }
 
         return await response.json();
-    } 
+    }
 }
 
 const categoryService = new CategoryService();

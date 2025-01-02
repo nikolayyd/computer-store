@@ -9,6 +9,7 @@ function SignOut() {
         localStorageWorker.removeUser();
         localStorageWorker.removeToken();
         localStorageWorker.removeUserId();
+        localStorageWorker.removeProducts();
 
         window.dispatchEvent(new Event('storage'));
         navigate('/');

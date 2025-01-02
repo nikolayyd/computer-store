@@ -15,10 +15,20 @@ class ProductController {
                 name: department.name,
                 description: department.description,
             }));
-            res.status(200).json(departments);
+            res.status(200).json(departmentsData);
         }
         catch(error) {
             res.status(500).json({error: 'Server error!' });
+        }
+    }
+    async getDepartmentName(req: Request, res: Response): Promise<void> {
+        try {
+            const categoryId = req.params.id;
+            const departmentName = await DepartmentService.getDepartmentById(categoryId);
+            res.status(200).json(departmentName);
+        }
+        catch(error) {
+            res.status(500).json({error: "Server error while getting category name"});
         }
     }
 }

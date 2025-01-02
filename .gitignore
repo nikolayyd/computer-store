@@ -10,9 +10,10 @@ node_modules/
 /build/
 /dist/
 
-# Игнориране на папката за кеширане на IDE-та (например VSCode)
 .vscode/
 
-# Игнориране на зависимостите за client-side, ако са в конкретна папка
 client/node_modules/
 server/node_modules/
+
+# key for stripe
+server/src/utils/stripeKey.ts

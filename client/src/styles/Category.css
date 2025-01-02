@@ -54,7 +54,10 @@
     color: #333;
 }
 
-
+.department {
+    font-size: 1rem;
+    color: #333;
+}
 /* @media (max-height: 450px) {
     .not-logged-in {
         margin-top: 3em;
