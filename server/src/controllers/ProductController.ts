@@ -25,6 +25,26 @@ class ProductController {
             res.status(500).json({error: 'Server error!' });
         }
     }
+
+    async getProductById(req: Request, res: Response): Promise<void> {
+        try {
+            const productId = req.params.id;
+            const product = await ProductService.getProductById(productId);
+            const productData: IProduct = {
+               id: product.id,
+               name: product.name,
+               price: product.price,
+               description: product.description
+            }
+            res.status(200).json(productData);
+
+        }
+        catch(error) {
+            res.status(500).json({error: 'Server error!' });
+        }
+
+
+    }
 }
 
 export default new ProductController();

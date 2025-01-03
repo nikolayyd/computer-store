@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import productService from "../services/ProductService";
 import "../styles/Product.css";
 import localStorageWorker from "../utils/LocalStorageWorker";
@@ -17,16 +17,21 @@ function Products() {
     const { id } = useParams<{ id: string }>();
     const [products, setProducts] = useState<IProduct[]>([]);
     const [messages, setMessages] = useState<{ [key: number]: string | null }>({}); 
+    const navigate = useNavigate();
     const fetchProducts = async () => {
         try {
-            const fetchProducts = await productService.getProductsFromCategory(id!);
+            if (!id) {
+                return;
+            }
+            const fetchProducts = await productService.getProductsFromCategory(id);
             setProducts(fetchProducts);
         } catch (error) {
             console.log("Error fetching categories");
         }
     };
 
-    const handleAddToCart = (product: IProduct) => {
+    const handleAddToCart = (event: React.MouseEvent, product: IProduct) => {
+        event.stopPropagation();
         localStorageWorker.addProduct(product);
 
         setMessages((prevMessages) => ({
@@ -42,6 +47,10 @@ function Products() {
         }, 3000);
     }
     
+    const handleProductClick = (product: IProduct) => {
+        navigate(`/product/${product.id}`);
+    }
+
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -50,11 +59,11 @@ function Products() {
         <div className="product-container">
             <div className="products-grid">
                 {products.map((product) => (
-                    <div key={product.id} className="product-card">
+                    <div onClick={() => handleProductClick(product)}className="product-card" key={product.id}>
                         <h3>{product.name}</h3>
                         <p className="price">Price: {product.price} лв.</p>
                         <p className="description">{product.description}</p>
-                        <button onClick={() => handleAddToCart(product)} className="add-to-cart-btn">Add to Cart</button>
+                        <button onClick={(event) => handleAddToCart(event, product)} className="add-to-cart-btn">Add to Cart</button>
                         {messages[Number(product.id)] && (
                             <p className="success-message">{messages[Number(product.id)]}</p>
                         )}

@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Cart from "./pages/Cart";
 import Home from './pages/Home';
 import './styles/App.css';
+import ProductAttributes from "./pages/ProductAttributes";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/about-us" element={<About/>}/>
           <Route path="/catalogue" element={<Category/>}/>
           <Route path="/catalogue/:id" element={<Products/>}/>
+          <Route path="/product/:id" element={<ProductAttributes/>}/>
           <Route path="/sign-in" element={<Login/>}/>
           <Route path="/sign-up" element={<Register/>}/>
           <Route path="/sign-out" element={<SignOut/>}/>

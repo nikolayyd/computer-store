@@ -30,6 +30,7 @@ function About() {
 
     return (
         <div className="department-container">
+            <h1 className="department-header">Departments</h1>
             {isLoggedIn ? (
                 <div className="departments-grid">
                     {departments.map((department) => (

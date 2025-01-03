@@ -2,6 +2,13 @@
     padding: 20px;
 }
 
+.department-header {
+    display: flex;
+    align-items: center;
+    justify-content: center
+    ;
+}
+
 .not-logged-in {
     display: flex;
     flex-direction: column;

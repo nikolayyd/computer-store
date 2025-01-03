@@ -7,7 +7,7 @@ import { IProduct } from "./Products";
 import "../styles/Cart.css";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import orderService from "../services/OrderService";
+// import orderService from "../services/OrderService";
 
 const stripePromise = loadStripe('pk_test_51QcnmzIKfJnl68JcC92SyyOppshzWj2MiUc7Av2bDbl9rBHt2bIWFM4AwAOwHXNt9EHNFezvDuEcSmYLMGphlYr2002jqXTjES');
 

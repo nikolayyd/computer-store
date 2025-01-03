@@ -1,0 +1,23 @@
+.home-container {
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+.home-container h1 {
+    font-size: 2.5rem;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+.home-container .home-description {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+}

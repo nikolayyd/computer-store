@@ -10,6 +10,7 @@ import { departmentRouter } from './routers/DepartmentRouter';
 import { stripeRouter } from './routers/StripeRouter';
 
 import { config } from '../knexfile';
+import { productAttributeRouter } from './routers/ProductAttributeRouter';
 
 const cors = require('cors');
 const knex = Knex(config.development);
@@ -26,6 +27,7 @@ app.use('/categories', authMiddleware, categoryRouter);
 app.use('/products', authMiddleware, productRouter);
 app.use('/departments', authMiddleware, departmentRouter);
 app.use('/payments', authMiddleware, stripeRouter);
+app.use('/product-attribute', authMiddleware, productAttributeRouter);
 // app.use('/orders', authMiddleware, orderRouter);
 
 
