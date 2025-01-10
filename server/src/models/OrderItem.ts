@@ -1,6 +1,6 @@
 import { Model } from 'objection';
-import { Order } from './Order';           // Импортирай Order модела
-import { Product } from './Product';       // Импортирай Product модела
+import { Order } from './Order';
+import { Product } from './Product';
 
 export class OrderItem extends Model {
   static readonly tableName = 'order_items';

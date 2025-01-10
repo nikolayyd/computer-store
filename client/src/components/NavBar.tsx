@@ -52,6 +52,9 @@ function NavBar() {
                         <Link to="/cart" className="navbar-link">
                             <span className="navbar-name">Cart</span>
                         </Link>
+                        <Link to="/orders" className="navbar-link">
+                            <span className="navbar-name">Orders</span>
+                        </Link>
                     </div>
                     ) : (
                     <Link to="/sign-in" className="navbar-link">

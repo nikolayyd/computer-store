@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import "../styles/StripeCheckoutForm.css";
 import paymentService from '../services/PaymentService';
@@ -12,10 +13,11 @@ interface StripeCheckoutFormProps {
 function StripeCheckoutForm ({ totalAmount, onSuccess, onError, onClose }: StripeCheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
+  const [message, setMessage] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-  
+    setMessage("Payment processing...");
     if (!stripe || !elements) {
       return;
     }
@@ -79,6 +81,7 @@ function StripeCheckoutForm ({ totalAmount, onSuccess, onError, onClose }: Strip
           <button className="success-modal-btn" type="submit" disabled={!stripe}>
             Pay Now
           </button>
+          <span className="message">{message}</span>
         </form>
       </div>
     </div>

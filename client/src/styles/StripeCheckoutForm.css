@@ -27,6 +27,20 @@
     transition: all 0.3s ease;
 }
 
+.message {
+    flex-direction: column;
+    padding: 16px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 37.5em;
+    color: #a58c28;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
 .modal-content:hover {
     box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
 }

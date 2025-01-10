@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Home from './pages/Home';
 import './styles/App.css';
 import ProductAttributes from "./pages/ProductAttributes";
+import Orders from "./pages/Orders";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/catalogue" element={<Category/>}/>
           <Route path="/catalogue/:id" element={<Products/>}/>
           <Route path="/product/:id" element={<ProductAttributes/>}/>
+          <Route path="/orders" element={<Orders/>}/>
           <Route path="/sign-in" element={<Login/>}/>
           <Route path="/sign-up" element={<Register/>}/>
           <Route path="/sign-out" element={<SignOut/>}/>

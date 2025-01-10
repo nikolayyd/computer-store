@@ -28,7 +28,7 @@ app.use('/products', authMiddleware, productRouter);
 app.use('/departments', authMiddleware, departmentRouter);
 app.use('/payments', authMiddleware, stripeRouter);
 app.use('/product-attribute', authMiddleware, productAttributeRouter);
-// app.use('/orders', authMiddleware, orderRouter);
+app.use('/orders', authMiddleware, orderRouter);
 
 
 app.listen(PORT, IP_ADDRESS, () => {

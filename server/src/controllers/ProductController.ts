@@ -5,7 +5,8 @@ export interface IProduct {
     id: number;
     name: string;
     price: number;
-    description?: string; 
+    description?: string;
+    quantity?: number;
 }
 
 class ProductController {
@@ -17,7 +18,7 @@ class ProductController {
                 id: product.id,
                 name: product.name,
                 price: product.price,
-                description: product.description,
+                description: product.description
             }));
             res.status(200).json(productsData);
         }

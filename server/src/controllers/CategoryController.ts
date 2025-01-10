@@ -1,19 +1,11 @@
 import { Request, Response } from 'express';
 import CategoryService from '../services/CategoryService';
 
-export interface IProduct {
-    id: number;
-    name: string;
-    price: string;
-    description?: string; 
-}
-
 export interface ICategory {
     id: number;
     name: string;
     description?: string;
 }
-
 
 class CategoryController {
     async getCategories(req: Request, res: Response): Promise<void> {
