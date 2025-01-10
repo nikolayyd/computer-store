@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import localStorageWorker from "../utils/LocalStorageWorker";
-import { Link } from "react-router-dom";
-import "../styles/About.css";
+import localStorageWorker from '../utils/LocalStorageWorker';
+import { Link } from 'react-router-dom';
+import '../styles/About.css';
 import departmentService from '../services/DepartmentService';
 
 export interface IDepartment {
@@ -18,7 +18,7 @@ function About() {
             const fetchedDepartments = await departmentService.getDepartments();
             setDepartments(fetchedDepartments);
         } catch (error) {
-            console.log("Error fetching departments");
+            console.log('Error fetching departments');
         }
     };
 
@@ -29,22 +29,22 @@ function About() {
     }, []);
 
     return (
-        <div className="department-container">
-            <h1 className="department-header">Departments</h1>
+        <div className='department-container'>
+            <h1 className='department-header'>Departments</h1>
             {isLoggedIn ? (
-                <div className="departments-grid">
+                <div className='departments-grid'>
                     {departments.map((department) => (
-                        <div key={department.id} className="department-card">
+                        <div key={department.id} className='department-card'>
                             <h3>{department.name}</h3>
                             <span>{department.description}</span>
                         </div>
                     ))}
                 </div>
             ) : (
-                <div className="not-logged-in">
+                <div className='not-logged-in'>
                     <p>Please sign in/sign up!</p>
-                    <Link to="/sign-in">
-                        <button className="sign-in-btn">Sign In</button>
+                    <Link to='/sign-in'>
+                        <button className='sign-in-btn'>Sign In</button>
                     </Link>
                 </div>
             )}

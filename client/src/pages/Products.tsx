@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import productService from "../services/ProductService";
-import "../styles/Product.css";
-import localStorageWorker from "../utils/LocalStorageWorker";
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import productService from '../services/ProductService';
+import '../styles/Product.css';
+import localStorageWorker from '../utils/LocalStorageWorker';
 
 export interface IProduct {
     id: string;
@@ -26,7 +26,7 @@ function Products() {
             const fetchProducts = await productService.getProductsFromCategory(id);
             setProducts(fetchProducts);
         } catch (error) {
-            console.log("Error fetching categories");
+            console.log('Error fetching categories');
         }
     };
 
@@ -36,7 +36,7 @@ function Products() {
 
         setMessages((prevMessages) => ({
             ...prevMessages,
-            [product.id]: "Product was added to the cart!",
+            [product.id]: 'Product was added to the cart!',
         }));
 
         setTimeout(() => {
@@ -56,16 +56,16 @@ function Products() {
     }, []);
 
     return (
-        <div className="product-container">
-            <div className="products-grid">
+        <div className='product-container'>
+            <div className='products-grid'>
                 {products.map((product) => (
-                    <div onClick={() => handleProductClick(product)}className="product-card" key={product.id}>
+                    <div onClick={() => handleProductClick(product)}className='product-card' key={product.id}>
                         <h3>{product.name}</h3>
-                        <p className="price">Price: {product.price} лв.</p>
-                        <p className="description">{product.description}</p>
-                        <button onClick={(event) => handleAddToCart(event, product)} className="add-to-cart-btn">Add to Cart</button>
+                        <p className='price'>Price: {product.price} лв.</p>
+                        <p className='description'>{product.description}</p>
+                        <button onClick={(event) => handleAddToCart(event, product)} className='add-to-cart-btn'>Add to Cart</button>
                         {messages[Number(product.id)] && (
-                            <p className="success-message">{messages[Number(product.id)]}</p>
+                            <p className='success-message'>{messages[Number(product.id)]}</p>
                         )}
                     </div>
                 ))}

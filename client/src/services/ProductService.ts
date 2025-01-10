@@ -1,5 +1,5 @@
-import { IProduct } from "../pages/Products";
-import localStorageWorker from "../utils/LocalStorageWorker";
+import { IProduct } from '../pages/Products';
+import localStorageWorker from '../utils/LocalStorageWorker';
 
 class ProductService {
     async getProductsFromCategory(catalogId: string) : Promise<IProduct[]> {

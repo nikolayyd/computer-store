@@ -1,5 +1,5 @@
-import { UserData } from "../components/AuthForm";
-import { IProduct } from "../pages/Products";
+import { UserData } from '../components/AuthForm';
+import { IProduct } from '../pages/Products';
 
 const USER_KEY = 'userInfo';
 export interface UserAPI {
@@ -17,15 +17,15 @@ class LocalStorageWorker {
   }
 
   setUserId(userId: number) {
-    localStorage.setItem("id", JSON.stringify(userId));
+    localStorage.setItem('id', JSON.stringify(userId));
   }
 
   setToken(token: string) {
-    localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem('token', JSON.stringify(token));
   }
 
   addProduct(product: IProduct) {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
     const existingProduct = cart.find((item: IProduct) => item.id === product.id);
 
     if (existingProduct) {
@@ -34,11 +34,11 @@ class LocalStorageWorker {
         cart.push({ ...product, quantity: 1 });
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   removeProduct(product: IProduct) {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
     const updatedCart = cart.map((item: IProduct) => {
         if (item.id === product.id) {
             if (Number(item.quantity) > 1) {
@@ -49,7 +49,7 @@ class LocalStorageWorker {
         return item;
     }).filter((item: IProduct | null) => item !== null);
 
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
 }
   
   getUser() {
@@ -58,11 +58,11 @@ class LocalStorageWorker {
   };
 
   getToken() {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem('token');
     return storedToken ? JSON.parse(storedToken) : null;
   }
   getUserId() {
-    const storedUserId = localStorage.getItem("id");
+    const storedUserId = localStorage.getItem('id');
     return storedUserId ? JSON.parse(storedUserId) : null;
   }
 
@@ -76,15 +76,15 @@ class LocalStorageWorker {
   }
   
   removeToken() {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
   }
 
   removeUserId() {
-    localStorage.removeItem("id");
+    localStorage.removeItem('id');
   }
 
   removeProducts() {
-    localStorage.removeItem("cart");
+    localStorage.removeItem('cart');
   }
 }
 

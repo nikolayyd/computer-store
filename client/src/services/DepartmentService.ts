@@ -1,5 +1,5 @@
-import { IDepartment } from "../pages/About";
-import localStorageWorker from "../utils/LocalStorageWorker";
+import { IDepartment } from '../pages/About';
+import localStorageWorker from '../utils/LocalStorageWorker';
 
 class DepartmentService {
     async getDepartments() : Promise<IDepartment[]> {

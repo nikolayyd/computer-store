@@ -1,5 +1,5 @@
-import { IProductAttribute } from "../pages/ProductAttributes";
-import localStorageWorker from "../utils/LocalStorageWorker";
+import { IProductAttribute } from '../pages/ProductAttributes';
+import localStorageWorker from '../utils/LocalStorageWorker';
 
 class ProductAttributeService {
     async getAttributeByProductId(productId: string) : Promise<IProductAttribute> {

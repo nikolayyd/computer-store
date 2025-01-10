@@ -26,7 +26,18 @@ class OrderController {
             res.status(200).json(orders);
         }
         catch(err) {
+            res.status(500).json({error: 'Server error!' });
+        }
+    }
+    async rejectOrder(req: Request, res: Response): Promise<void> {
+        try {
+            const orderId = req.params.id;
+            await OrderService.rejectOrder(Number(orderId));
 
+            res.status(200).json({ message: 'Order created successfully' });
+        }
+        catch(err) {
+            res.status(500).json({error: 'Server error!' });
         }
     }
     async createOrder(req: Request, res: Response): Promise<void> {

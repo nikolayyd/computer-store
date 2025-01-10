@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import "../styles/StripeCheckoutForm.css";
+import '../styles/StripeCheckoutForm.css';
 import paymentService from '../services/PaymentService';
 import localStorageWorker from '../utils/LocalStorageWorker';
 interface StripeCheckoutFormProps {
@@ -17,7 +17,7 @@ function StripeCheckoutForm ({ totalAmount, onSuccess, onError, onClose }: Strip
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setMessage("Payment processing...");
+    setMessage('Payment processing...');
     if (!stripe || !elements) {
       return;
     }
@@ -27,7 +27,7 @@ function StripeCheckoutForm ({ totalAmount, onSuccess, onError, onClose }: Strip
     const cardCvcElement = elements.getElement(CardCvcElement);
   
     if (!cardNumberElement || !cardExpiryElement || !cardCvcElement) {
-      onError("One or more card elements are missing.");
+      onError('One or more card elements are missing.');
       return;
     }
   
@@ -59,29 +59,29 @@ function StripeCheckoutForm ({ totalAmount, onSuccess, onError, onClose }: Strip
   
 
   return (
-    <div className="checkout-modal">
-      <div className="modal-content">
-        <button className="close-modal-btn" onClick={onClose}>×</button>
+    <div className='checkout-modal'>
+      <div className='modal-content'>
+        <button className='close-modal-btn' onClick={onClose}>×</button>
         <h3>Complete Your Payment</h3>
         <form onSubmit={handleSubmit}>
-          <div className="StripeElementsContainer">
-            <div className="StripeElement">
+          <div className='StripeElementsContainer'>
+            <div className='StripeElement'>
               <label>Card Number</label>
               <CardNumberElement />
             </div>
-            <div className="StripeElement">
+            <div className='StripeElement'>
               <label>Expiration Date</label>
               <CardExpiryElement />
             </div>
-            <div className="StripeElement">
+            <div className='StripeElement'>
               <label>CVC</label>
               <CardCvcElement />
             </div>
           </div>
-          <button className="success-modal-btn" type="submit" disabled={!stripe}>
+          <button className='success-modal-btn' type='submit' disabled={!stripe}>
             Pay Now
           </button>
-          <span className="message">{message}</span>
+          <span className='message'>{message}</span>
         </form>
       </div>
     </div>

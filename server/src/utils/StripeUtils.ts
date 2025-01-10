@@ -13,7 +13,7 @@ export const createPaymentIntent = async (amount: number): Promise<string> => {
     });
     return paymentIntent.client_secret!;
   } catch (error) {
-    console.error("Error creating payment intent", error);
+    console.error('Error creating payment intent', error);
     throw error;
   }
 };

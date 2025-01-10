@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import localStorageWorker from "../utils/LocalStorageWorker";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import localStorageWorker from '../utils/LocalStorageWorker';
 
 function SignOut() {
     const navigate = useNavigate();

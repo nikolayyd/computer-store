@@ -1,4 +1,4 @@
-import localStorageWorker from "../utils/LocalStorageWorker";
+import localStorageWorker from '../utils/LocalStorageWorker';
 
 class PaymentService {
   async completePayment (totalAmount: number): Promise<string> {

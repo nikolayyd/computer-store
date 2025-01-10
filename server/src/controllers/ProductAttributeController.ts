@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ProductAttributesService from "../services/ProductAttributesService";
+import ProductAttributesService from '../services/ProductAttributesService';
 
 export interface IProductAttribute {
     id: number;

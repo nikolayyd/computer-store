@@ -36,6 +36,22 @@ class OrderService {
 
         return await response.json();
     }
+
+    async rejectOrder(orderId: number): Promise<void> {
+        const response = await fetch(`http://localhost:3001/orders/reject-order/${orderId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorageWorker.getToken()}`
+            },
+        })
+
+        if (!response.ok) {
+            throw new Error('Error posting orders');
+        }        
+
+        return await response.json();
+    }
 }
 
 const orderService = new OrderService();

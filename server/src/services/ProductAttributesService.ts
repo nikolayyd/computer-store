@@ -1,4 +1,4 @@
-import { ProductAttribute } from "../models/ProductAttribute";
+import { ProductAttribute } from '../models/ProductAttribute';
 
 class ProductAttributesService {
         async getAttributesByProductId(productId: string): Promise<ProductAttribute[]> {
@@ -10,7 +10,7 @@ class ProductAttributesService {
             return productAttributes;
         }
         catch(err) {
-            throw new Error("Error while getting product attributes by product id.");
+            throw new Error('Error while getting product attributes by product id.');
         }
     }
 

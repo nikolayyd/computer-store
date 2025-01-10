@@ -1,4 +1,4 @@
-import { Category } from "../models/Category";
+import { Category } from '../models/Category';
 
 class CategoryService {
     async getCategories(): Promise<Category[]> {
@@ -7,7 +7,7 @@ class CategoryService {
             
         }
         catch(err) {
-            throw new Error("Error while getting catalogues/categories.");
+            throw new Error('Error while getting catalogues/categories.');
         }
     }
 }

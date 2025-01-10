@@ -1,13 +1,13 @@
 // Cart.tsx
-import { useEffect, useState } from "react";
-import localStorageWorker from "../utils/LocalStorageWorker";
-import StripeCheckoutForm from "../components/StripeCheckoutForm"; 
-import { useNavigate } from "react-router-dom";
-import { IProduct } from "./Products";
-import "../styles/Cart.css";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import orderService from "../services/OrderService";
+import { useEffect, useState } from 'react';
+import localStorageWorker from '../utils/LocalStorageWorker';
+import StripeCheckoutForm from '../components/StripeCheckoutForm'; 
+import { useNavigate } from 'react-router-dom';
+import { IProduct } from './Products';
+import '../styles/Cart.css';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import orderService from '../services/OrderService';
 
 const stripePromise = loadStripe('pk_test_51QcnmzIKfJnl68JcC92SyyOppshzWj2MiUc7Av2bDbl9rBHt2bIWFM4AwAOwHXNt9EHNFezvDuEcSmYLMGphlYr2002jqXTjES');
 
@@ -26,7 +26,7 @@ function Cart() {
     const handleRemoveProduct = (productId: number) => {
         const updatedCart = cart.filter((product) => Number(product.id) !== productId);
         setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
 
     const handlePayment = () => {
@@ -37,8 +37,8 @@ function Cart() {
         setShowCheckoutForm(false);
         orderService.createOrder(cart, totalPrice, localStorageWorker.getUserId());
         localStorageWorker.removeProducts();
-        setMessageClass("success");
-        setMessage("Payment successful!");
+        setMessageClass('success');
+        setMessage('Payment successful!');
         setTimeout(() => {
             navigate('/');
           }, 5000);
@@ -46,13 +46,13 @@ function Cart() {
 
     const handlePaymentError = (errorMessage: string) => {
         setShowCheckoutForm(false);
-        setMessageClass("error");
+        setMessageClass('error');
         setMessage(errorMessage);
     };
 
     const handleIncreaseQuantity = (product: IProduct) => {
         localStorageWorker.addProduct(product);
-        const updatedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const updatedCart = JSON.parse(localStorage.getItem('cart') || '[]');
         setCart(updatedCart);
     };
     
@@ -61,7 +61,7 @@ function Cart() {
             return;
         }
         localStorageWorker.removeProduct(product);
-        const updatedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const updatedCart = JSON.parse(localStorage.getItem('cart') || '[]');
         setCart(updatedCart);
     };
 
@@ -72,27 +72,27 @@ function Cart() {
     }, 0);
 
     return (
-        <div className="cart-container">
+        <div className='cart-container'>
             <h2>Your Cart</h2>
             {cart.length === 0 ? (
-                <p className="payment-message empty">Your cart is empty.</p>
+                <p className='payment-message empty'>Your cart is empty.</p>
             ) : (
-                <div className="cart-grid">
+                <div className='cart-grid'>
                     {cart.map((product) => (
-                        <div key={product.id} className="cart-card">
+                        <div key={product.id} className='cart-card'>
                             <h3>{product.name}</h3>
                             <p>{product.description}</p>
-                            <p className="price">Price: {product.price} лв.</p>
-                            <div className="quantity-controls">
-                                <button onClick={() => handleDecreaseQuantity(product)} className="quantity-btn">
+                            <p className='price'>Price: {product.price} лв.</p>
+                            <div className='quantity-controls'>
+                                <button onClick={() => handleDecreaseQuantity(product)} className='quantity-btn'>
                                     -
                                 </button>
                                 <span>{product.quantity}</span>
-                                <button onClick={() => handleIncreaseQuantity(product)} className="quantity-btn">
+                                <button onClick={() => handleIncreaseQuantity(product)} className='quantity-btn'>
                                     +
                                 </button>
                             </div>
-                            <button onClick={() => handleRemoveProduct(Number(product.id))} className="remove-btn">
+                            <button onClick={() => handleRemoveProduct(Number(product.id))} className='remove-btn'>
                                 Remove
                             </button>
                         </div>
@@ -100,12 +100,12 @@ function Cart() {
                 </div>
             )}
             {cart.length > 0 && (
-                <div className="total-price">
+                <div className='total-price'>
                     <h3>Total Price: {totalPrice.toFixed(2)} лв.</h3>
                 </div>
             )}
             {(cart.length > 0) && 
-                <button className="pay-btn" onClick={handlePayment}>
+                <button className='pay-btn' onClick={handlePayment}>
                     Complete Order
                 </button>
             }

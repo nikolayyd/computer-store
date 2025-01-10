@@ -1,4 +1,4 @@
-import { Product } from "../models/Product";
+import { Product } from '../models/Product';
 
 class ProductService {
     async getProductsByCategory(categoryId: string): Promise<Product[]> {
@@ -11,7 +11,7 @@ class ProductService {
             return products;
         }
         catch(err) {
-            throw new Error("Error while getting products by category.");
+            throw new Error('Error while getting products by category.');
         }
     }
 
@@ -24,7 +24,7 @@ class ProductService {
             return product;
         }
         catch(err) {
-            throw new Error("Error while getting product by id.");
+            throw new Error('Error while getting product by id.');
         }
     }
 

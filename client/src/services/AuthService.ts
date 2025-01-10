@@ -1,5 +1,5 @@
-import { UserData } from "../components/AuthForm";
-import { UserAPI } from "../utils/LocalStorageWorker";
+import { UserData } from '../components/AuthForm';
+import { UserAPI } from '../utils/LocalStorageWorker';
 
 class AuthService {
     async signIn(email: string, password: string) : Promise<UserAPI> {

@@ -1,17 +1,16 @@
-import { create } from "domain";
-import { Order } from "../models/Order";
-import { OrderItem } from "../models/OrderItem";
-import { IOrder } from "../controllers/OrderController";
-import { IProduct } from "../controllers/ProductController";
+import { Order } from '../models/Order';
+import { OrderItem } from '../models/OrderItem';
+import { IOrder } from '../controllers/OrderController';
+import { IProduct } from '../controllers/ProductController';
 
 class OrderService {
     async getOrdersByUserId(userId: number): Promise<Order[]> {
         try {
-            const orders = await Order.query().where("user_id", userId); 
+            const orders = await Order.query().where('user_id', userId); 
             return orders;
         }
         catch(err) {
-            throw new Error("Error while getting orders!");
+            throw new Error('Error while getting orders!');
         }
     }
 
@@ -20,7 +19,7 @@ class OrderService {
             const orderData = {
                 user_id: userId,
                 order_date: new Date().toISOString(),
-                status: "Created",
+                status: 'Created',
                 total_amount: totalAmount,
             }
             const newOrder: IOrder = await Order.query().insert(orderData);
@@ -28,7 +27,16 @@ class OrderService {
             return newOrder.id;
         }
         catch(err) {
-            throw new Error("Error while creating order!");
+            throw new Error('Error while creating order!');
+        }
+    }
+
+    async rejectOrder(orderId: number): Promise<void> {
+        try {
+            await Order.query().findById(orderId).patch({ status: 'Rejected' });
+        }
+        catch(err) {
+            throw new Error('Error while rejecting order!');
         }
     }
 

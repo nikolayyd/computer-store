@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import DepartmentService from "../services/DepartmentService";
+import DepartmentService from '../services/DepartmentService';
 
 export interface IDepartment {
     id: number;
@@ -28,7 +28,7 @@ class ProductController {
             res.status(200).json(departmentName);
         }
         catch(error) {
-            res.status(500).json({error: "Server error while getting category name"});
+            res.status(500).json({error: 'Server error while getting category name'});
         }
     }
 }

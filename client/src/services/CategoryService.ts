@@ -1,5 +1,5 @@
-import { ICategory } from "../pages/Category";
-import localStorageWorker from "../utils/LocalStorageWorker";
+import { ICategory } from '../pages/Category';
+import localStorageWorker from '../utils/LocalStorageWorker';
 
 class CategoryService {
     async getCategories() : Promise<ICategory[]> {
