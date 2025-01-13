@@ -4,6 +4,8 @@ import '../styles/NavBar.css';
 
 function NavBar() {
     const [user, setUser] = useState<{ id: string; email: string } | null>(null);
+    const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+
 
     const updateUserFromLocalStorage = () => {
         const storedUser = localStorage.getItem('userInfo');
@@ -45,16 +47,20 @@ function NavBar() {
                     </li>
                 </ul>
                 {user ? (
-                    <div className='navbar-links-right'>
-                        <Link to='/sign-out' className='navbar-link'>
-                            <span className='navbar-name'>Sign Out</span>
-                        </Link>
-                        <Link to='/cart' className='navbar-link'>
-                            <span className='navbar-name'>Cart</span>
-                        </Link>
-                        <Link to='/orders' className='navbar-link'>
-                            <span className='navbar-name'>Orders</span>
-                        </Link>
+                    <div className="navbar-links-right">
+                        <div
+                            className="navbar-link profile"
+                            onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                        >
+                            My Profile
+                            {isProfileMenuOpen && (
+                                <div className="profile-menu">
+                                    <Link to="/orders" className="profile-menu-item">My Orders</Link>
+                                    <Link to="/sign-out" className="profile-menu-item">Sign Out</Link>
+                                </div>
+                            )}
+                        </div>
+                        <Link to="/cart" className="navbar-link">Cart</Link>
                     </div>
                     ) : (
                     <Link to='/sign-in' className='navbar-link'>

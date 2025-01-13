@@ -3,6 +3,7 @@ import authService from '../services/AuthService';
 import '../styles/AuthForm.css';
 import localStorageWorker, { UserAPI } from '../utils/LocalStorageWorker';
 import { useState } from 'react';
+import { isPasswordStrong } from '../utils/Validation';
 
 interface AuthProps {
   formType: 'sign-in' | 'sign-up';
@@ -17,7 +18,7 @@ export interface UserData {
 
 function AuthForm({ formType }: AuthProps) {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // Добавяме състояние за съобщение
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,6 +30,13 @@ function AuthForm({ formType }: AuthProps) {
       email: String(formData.get('email')),
       password: String(formData.get('password'))
     };
+
+
+    if (!isPasswordStrong(userData.password) && formType==='sign-up') {
+      setErrorMessage( 'Password must be at least 4 digits and 4 letters!');
+      return;
+    }
+
 
     try {
       const userAPI: UserAPI =
