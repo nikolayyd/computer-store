@@ -6,14 +6,13 @@ function NavBar() {
     const [user, setUser] = useState<{ id: string; email: string } | null>(null);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
-
     const updateUserFromLocalStorage = () => {
         const storedUser = localStorage.getItem('userInfo');
         if (storedUser) {
             const parsedUser = JSON.parse(storedUser);
             setUser({
                 id: localStorage.getItem('Id') || '',
-                email: `${parsedUser.email}`,
+                email: `${parsedUser.email}`
             });
         } else {
             setUser(null);
@@ -22,11 +21,25 @@ function NavBar() {
 
     useEffect(() => {
         updateUserFromLocalStorage();
-
+        
+        const handleClickOutside = (e: MouseEvent) => {
+            const profileButton = document.querySelector('.navbar-link.profile');
+            const profileMenu = document.querySelector('.profile-menu');
+            
+            if (profileButton && profileMenu &&
+                !profileButton.contains(e.target as Node) &&
+                !profileMenu.contains(e.target as Node)) 
+                {
+                    setIsProfileMenuOpen(false);
+                }
+            };
+            
         window.addEventListener('storage', updateUserFromLocalStorage);
+        document.addEventListener('mousedown', handleClickOutside);
 
         return () => {
             window.removeEventListener('storage', updateUserFromLocalStorage);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
     
@@ -52,9 +65,10 @@ function NavBar() {
                             className="navbar-link profile"
                             onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                         >
-                            My Profile
+                            User Options
                             {isProfileMenuOpen && (
                                 <div className="profile-menu">
+                                    <Link to="/profile" className="profile-menu-item">My Profile</Link>
                                     <Link to="/orders" className="profile-menu-item">My Orders</Link>
                                     <Link to="/sign-out" className="profile-menu-item">Sign Out</Link>
                                 </div>

@@ -11,6 +11,8 @@ import { stripeRouter } from './routers/StripeRouter';
 
 import { config } from '../knexfile';
 import { productAttributeRouter } from './routers/ProductAttributeRouter';
+import { userRouter } from './routers/UserRouter';
+import { orderItemRouter } from './routers/OrderItemRouter';
 
 const cors = require('cors');
 const knex = Knex(config.development);
@@ -23,12 +25,14 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/auth',authRouter);
+app.use('/users', authMiddleware, userRouter);
 app.use('/categories', authMiddleware, categoryRouter);
 app.use('/products', authMiddleware, productRouter);
 app.use('/departments', authMiddleware, departmentRouter);
 app.use('/payments', authMiddleware, stripeRouter);
 app.use('/product-attribute', authMiddleware, productAttributeRouter);
 app.use('/orders', authMiddleware, orderRouter);
+app.use('/items', authMiddleware, orderItemRouter);
 
 
 app.listen(PORT, IP_ADDRESS, () => {

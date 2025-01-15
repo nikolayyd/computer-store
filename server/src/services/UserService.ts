@@ -38,13 +38,19 @@ class UserService {
         }
     }
 
-    async getUserInfo(userId: number): Promise<User> {
+    async getUserInfo(userId: number): Promise<UserRegistrationData> {
         try {
             const user = await User.query().findById(userId);
             if (!user) {
                 throw ('no-user');
             }
-            return user;
+            const userData = {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            }
+
+            return userData;
         }
         catch (err) {
             if (err === 'no-user') {

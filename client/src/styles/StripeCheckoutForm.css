@@ -27,12 +27,19 @@
     transition: all 0.3s ease;
 }
 
+.message-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    width: 100%;
+}
+
+
 .message {
-    flex-direction: column;
     padding: 16px;
     margin: 20px auto;
-    width: 80%;
-    max-width: 37.5em;
+    /* width: 80%; */
+    /* max-width: 37.5em; */
     color: #a58c28;
     font-size: 1em;
     font-weight: bold;

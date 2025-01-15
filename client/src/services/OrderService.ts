@@ -1,4 +1,4 @@
-import { IOrder } from "../pages/Orders";
+import { IOrder, IOrderItem } from "../pages/Orders";
 import { IProduct } from "../pages/Products";
 import localStorageWorker from "../utils/LocalStorageWorker";
 
@@ -50,6 +50,20 @@ class OrderService {
             throw new Error('Error posting orders');
         }        
 
+        return await response.json();
+    }
+    async getOrderItemsById(orderId: number): Promise<IOrderItem[]> {
+        const response = await fetch(`http://localhost:3001/items/get-items-by-orderId/${orderId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorageWorker.getToken()}`
+            },
+        })
+
+        if (!response.ok) {
+            throw new Error('Error getting order items!');
+        }
         return await response.json();
     }
 }

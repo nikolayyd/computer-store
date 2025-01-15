@@ -16,6 +16,7 @@ function Cart() {
     const [message, setMessage] = useState<string | null>(null);
     const [messageClass, setMessageClass] = useState<string | null>(null);
     const [showCheckoutForm, setShowCheckoutForm] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,6 +35,7 @@ function Cart() {
     };
 
     const handlePaymentSuccess = () => {
+        setIsButtonDisabled(true);
         setShowCheckoutForm(false);
         orderService.createOrder(cart, totalPrice, localStorageWorker.getUserId());
         localStorageWorker.removeProducts();
@@ -41,11 +43,13 @@ function Cart() {
         setMessage('Payment successful!');
         setTimeout(() => {
             navigate('/');
+            setIsButtonDisabled(false);
           }, 5000);
     };
 
     const handlePaymentError = (errorMessage: string) => {
         setShowCheckoutForm(false);
+        setIsButtonDisabled(false);
         setMessageClass('error');
         setMessage(errorMessage);
     };
@@ -105,7 +109,7 @@ function Cart() {
                 </div>
             )}
             {(cart.length > 0) && 
-                <button className='pay-btn' onClick={handlePayment}>
+                <button className='pay-btn' onClick={handlePayment} disabled={isButtonDisabled}>
                     Complete Order
                 </button>
             }

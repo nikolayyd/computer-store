@@ -9,10 +9,15 @@ export interface UserAPI {
 
 class LocalStorageWorker {
   saveUser(userAPI: UserAPI, user: UserData) {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    const userData = {
+      email: user.email,
+    };
+
+    localStorage.setItem(USER_KEY, JSON.stringify(userData));
+    
     this.setUserId(userAPI.userId);
     this.setToken(userAPI.token);
-  
+
     window.dispatchEvent(new Event('storage'));
   }
 
